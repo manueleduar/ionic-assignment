@@ -1,16 +1,16 @@
 
-<ion-searchbar animated (ionChange)="onSearchChange($event)" [(ngModel)]="searchText" placeholder="Search"></ion-searchbar>
+<ion-searchbar animated (ionChange)="onSearchChange($event)" [(ngModel)]="searchText" placeholder="Search login username"></ion-searchbar>
 
 <!-- show avatar_url (photo) and login (username) using onSearchChange -->
 <ion-row *ngIf="searchText">
   <ion-col size="12" *ngFor="let user of listUsers | filter:searchText">
-    <ion-card>
+    <ion-card (click)="openProfile(user.login)">
       <ion-card-header>
         <ion-card-title>
           <ion-avatar slot="">
             <img src="{{ user.avatar_url }}">
           </ion-avatar>
-          <ion-label (click)="openProfile(user.login)">
+          <ion-label>
             <h2>{{ user.login || 'no name' }}</h2>
             <!-- <h3>{{ user.bio || 'no bio' }}</h3>
             <h4 *ngIf="user.blog" style="text-decoration:none;"><a href="{{ user.blog }}" target="_system">{{user.blog}}</a></h4>

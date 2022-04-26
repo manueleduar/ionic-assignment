@@ -18,7 +18,7 @@ export class SearchComponentComponent implements OnInit {
   ngOnInit() {
     this.usersService.getUsers().subscribe(data => {
       this.listUsers = data;
-      console.log(this.listUsers);
+      // console.log(this.listUsers);
     });
   }
 
