@@ -37,7 +37,11 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: {
+      edge: true,
+      safari: true,
+      chrome: true,
+    },
     singleRun: false,
     restartOnFileChange: true
   });

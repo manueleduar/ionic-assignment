@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.prod';
 import { UsersService } from '../../../../services/users.service';
-import { request } from "@octokit/request";
+import { Users } from 'src/app/interfaces/users';
 
 @Component({
   selector: 'app-list-of-users',
@@ -12,26 +10,23 @@ import { request } from "@octokit/request";
 })
 export class ListOfUsersComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient, private userService: UsersService, private router: Router) { }
+  constructor(private userService: UsersService, private router: Router) { }
 
-  users = [];
+  users : Users[] = [];
   userInfoArray = [];
 
   // init app
   ngOnInit() {
     console.log('init app');
 
-    // use the userService to get the user
     this.userService.getUsers().subscribe(data => {
       this.users = data;
-      // console.log(this.users);
 
     // get user of each user array
     this.users.forEach(user => {
       let userName = user.login.includes(' ') ? user.login.replace(' ', '%20') : user.login;
       this.userService.getUser(userName).subscribe(userInformation => {
         this.userInfoArray.push(userInformation);
-       // console.log(userInformation);
       }, 
       error => {
         console.log(error);
@@ -40,7 +35,6 @@ export class ListOfUsersComponent implements OnInit {
   }
 
   openProfile(username: string) {
-    // console.log(username);
     this.router.navigate(['/profile-info/', username]);
   }
 

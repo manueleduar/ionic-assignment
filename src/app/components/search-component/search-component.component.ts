@@ -18,7 +18,6 @@ export class SearchComponentComponent implements OnInit {
   ngOnInit() {
     this.usersService.getUsers().subscribe(data => {
       this.listUsers = data;
-      // console.log(this.listUsers);
     });
   }
 
@@ -28,8 +27,6 @@ export class SearchComponentComponent implements OnInit {
 
   onSearchChange(event: CustomEvent) {
     console.log(event.detail.value);
-
-    // search event.detail.value in listUsers, if find it, show the user Profile
   }
 
 }
