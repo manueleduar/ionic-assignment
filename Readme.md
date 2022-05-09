@@ -10,4 +10,4 @@
 
 <h6>When the user select the user he/she's looking for, it loads the profile page of the user selected</h6>
 
-<h6>It was implemented using Interfaces and Jasmine for <br>Unit Tests</br></h6>
+<h6>It was implemented using Interfaces and Jasmine for <bold>Unit Tests</bold></h6>
