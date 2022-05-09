@@ -9,3 +9,5 @@
 <h6>The second tab is the <b>Search bar</b> that allows the user to find the user he/she it's looking by writting the login name, if the name exist on the list, the search page shows a card with the some information of user.</h6>
 
 <h6>When the user select the user he/she's looking for, it loads the profile page of the user selected</h6>
+
+<h6>It was implemented using Interfaces and Jasmine for <br>Unit Tests</br></h6>
