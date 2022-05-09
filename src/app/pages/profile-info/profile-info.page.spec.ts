@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersService } from '../../../../services/users.service';
-import { UserProfile } from 'src/app/interfaces/profile_user';
+import { UserProfile } from 'src/app/interfaces/Profile.interface';
 import { MockListProfileUsers } from '../../mocks/list-of-profileUsers.mock';
 
 import { ProfileInfoPage } from './profile-info.page';

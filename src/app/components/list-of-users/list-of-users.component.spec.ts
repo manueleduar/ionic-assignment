@@ -43,4 +43,23 @@ describe('ListOfUsersComponent', () => {
     expect(service.getUsers()).toBeTruthy();
   });
 
+  // getUser should return object from service
+  it('should get one user', () => {
+    const user = 'userRandom';
+    expect(userService.getUser(user)).toBeTruthy();
+  });
+
+  // GetUser service test case get some user
+  it('should get some user', () => {
+    const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    expect(userService.getUser(randomString)).toBeTruthy();
+    console.log('randome user for test: ' + randomString);
+  });
+
+  // test ngOnInit() 
+  it('should open ngOnInit list-of-users component', () => {
+    component.ngOnInit();
+    expect(component.ngOnInit).toBeTruthy();
+  });
+
 });

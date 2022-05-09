@@ -21,4 +21,11 @@ describe('ExploreContainerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // test ngOnInit() 
+  it('should open ngOnInit', () => {
+    component.ngOnInit();
+    expect(component.ngOnInit).toBeTruthy();
+  });
+
 });

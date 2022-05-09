@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UsersService } from '../../../../services/users.service';
-import { Users } from '../../interfaces/users';
+import { Users } from '../../interfaces/Users.interface';
 import { MockListProfileUsers } from '../../mocks/list-of-profileUsers.mock';
 import { SearchComponentComponent } from './search-component.component';
 import { Mock } from 'protractor/built/driverProviders';
@@ -80,6 +80,61 @@ describe('SearchComponentComponent', () => {
       , error => {
         expect(error).toBeTruthy();
       });
+  });
+
+  // open profile test case
+  it('should open profile', () => {
+    component.openProfile('userRandom');
+    expect(component.openProfile).toBeTruthy();
+  });
+
+  // test onSearchChange(event: CustomEvent) 
+  it('should detect a custom event the onSearchChange function', () => {
+    component.onSearchChange({
+      detail: { value: 'userRandom' },
+      initCustomEvent: function (type: string, bubbles?: boolean, cancelable?: boolean, detail?: any): void {
+        throw new Error('Function not implemented.');
+      },
+      bubbles: false,
+      cancelBubble: false,
+      cancelable: false,
+      composed: false,
+      currentTarget: undefined,
+      defaultPrevented: false,
+      eventPhase: 0,
+      isTrusted: false,
+      returnValue: false,
+      srcElement: undefined,
+      target: undefined,
+      timeStamp: 0,
+      type: '',
+      composedPath: function (): EventTarget[] {
+        throw new Error('Function not implemented.');
+      },
+      initEvent: function (type: string, bubbles?: boolean, cancelable?: boolean): void {
+        throw new Error('Function not implemented.');
+      },
+      preventDefault: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopImmediatePropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopPropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      AT_TARGET: 0,
+      BUBBLING_PHASE: 0,
+      CAPTURING_PHASE: 0,
+      NONE: 0
+    });
+    expect(component.onSearchChange).toBeTruthy();
+  });
+
+  // test ngOnInit() 
+  it('should open ngOnInit search-component', () => {
+    component.ngOnInit();
+    expect(component.ngOnInit).toBeTruthy();
   });
 
 });

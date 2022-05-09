@@ -1,4 +1,4 @@
-import { UserProfile } from '../interfaces/profile_user';
+import { UserProfile } from '../interfaces/Profile.interface';
 
 export const MockListProfileUsers: UserProfile[]  = [
   {

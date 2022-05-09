@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../../../../services/users.service';
-import { UserProfile } from 'src/app/interfaces/profile_user';
+import { UserProfile } from 'src/app/interfaces/Profile.interface';
 
 @Component({
   selector: 'app-profile-info',
@@ -17,7 +17,7 @@ export class ProfileInfoPage implements OnInit {
 
   ngOnInit() {
     this.key = this.route.snapshot.paramMap.get('key');
-    console.log('init app');
+    console.log('init profile info');
 
     // use the function getUser to get the user info
     this.userService.getUser(this.key).subscribe(data => {

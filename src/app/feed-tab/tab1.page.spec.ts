@@ -35,5 +35,11 @@ describe('Feed page Tab', () => {
   it('should create Feed page tab', () => {
     expect(component).toBeTruthy();
   });
+
+  // test ngOnInit() 
+  it('should open ngOnInit feed-tab', () => {
+    component.ngOnInit();
+    expect(component.ngOnInit).toBeTruthy();
+  });
   
 });
