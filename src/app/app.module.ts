@@ -7,7 +7,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchFilterPipe } from './search-filter.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { StoreModule } from '@ngrx/store';
 
 @NgModule({

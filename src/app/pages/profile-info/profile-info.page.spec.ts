@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UsersService } from '../../../../services/users.service';
+import { UsersService } from 'src/app/services/users.service';
 import { UserProfile } from 'src/app/interfaces/Profile.interface';
 import { MockListProfileUsers } from '../../mocks/list-of-profileUsers.mock';
 

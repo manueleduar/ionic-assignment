@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../../../services/users.service';
+import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
-import { SearchFilterPipe } from '../../search-filter.pipe';
+import { SearchFilterPipe } from '../../pipes/search-filter.pipe';
 
 @Component({
   selector: 'app-search-component',

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UsersService } from '../../../../services/users.service';
+import { UsersService } from 'src/app/services/users.service';
 
 import { ListOfUsersComponent } from './list-of-users.component';
 

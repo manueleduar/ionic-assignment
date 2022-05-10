@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { UsersService } from '../../../../services/users.service';
+import { UsersService } from 'src/app/services/users.service';
 import { Users } from '../../interfaces/Users.interface';
 import { MockListProfileUsers } from '../../mocks/list-of-profileUsers.mock';
 import { SearchComponentComponent } from './search-component.component';
