@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Store } from '@ngrx/store';
-import { Users } from 'src/app/interfaces/Users.interface';
-import { UserProfile } from 'src/app/interfaces/Profile.interface';
+import { Users } from 'src/app/models/Users.model';
+import { UserProfile } from 'src/app/models/Profile.model';
 
 
 @Injectable({
