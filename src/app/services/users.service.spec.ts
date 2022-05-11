@@ -16,7 +16,5 @@ describe('UsersService', () => {
 
     it('should be created Users Service', () => {
         expect(service).toBeTruthy();
-    }
-    );
-}
-);
+    });
+});
