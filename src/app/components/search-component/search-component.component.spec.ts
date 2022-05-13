@@ -6,9 +6,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UsersService } from 'src/app/services/users.service';
 import { Users } from '../../models/Users.model';
+import { mockUsersArray } from '../../mocks/users_array.mock';
 import { MockListProfileUsers } from '../../mocks/list-of-profileUsers.mock';
 import { SearchComponentComponent } from './search-component.component';
 import { Mock } from 'protractor/built/driverProviders';
+import { of } from 'rxjs';
 
 describe('SearchComponentComponent', () => {
   let component: SearchComponentComponent;
@@ -69,19 +71,6 @@ describe('SearchComponentComponent', () => {
       });
   });
 
-  // test service to get user and compare with mock
-  it('should get user from service and compare with mock', () => {
-    const service = TestBed.inject(UsersService);
-    expect(service).toBeTruthy();
-
-    service.getUser('userRandom').subscribe(data => {
-      expect(data).toEqual(MockListProfileUsers[0]);
-    }
-      , error => {
-        expect(error).toBeTruthy();
-      });
-  });
-
   // open profile test case
   it('should open profile', () => {
     component.openProfile('userRandom');
@@ -135,6 +124,15 @@ describe('SearchComponentComponent', () => {
   it('should open ngOnInit search-component', () => {
     component.ngOnInit();
     expect(component.ngOnInit).toBeTruthy();
+  });
+
+  // test getUsers() function component and service
+  it('should getUsers function component', () => {
+    const response = mockUsersArray;
+    const spy = spyOn(userService, 'getUsers').and.returnValue(of(response));
+    component.getUsers();
+    expect(component.getUsers).toBeTruthy();
+    expect(spy).toHaveBeenCalled();
   });
 
 });

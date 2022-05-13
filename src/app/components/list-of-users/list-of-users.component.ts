@@ -23,19 +23,28 @@ export class ListOfUsersComponent implements OnInit {
       this.users = data;
 
     // get user of each user array
-    this.users.forEach(user => {
-      let userName = user.login.includes(' ') ? user.login.replace(' ', '%20') : user.login;
+    this.getUser(this.users);
+    });
+  }
+
+  openProfile(username: string) {
+    this.router.navigate(['/profile-info/', username]);
+  }
+
+  replaceSpaces(username: string) {
+    return username.includes(' ') ? username.replace(' ', '%20') : username;
+  }
+
+  // get each user
+  getUser(users: Users[]) {
+    users.forEach(user => {
+      let userName = this.replaceSpaces(user.login);
       this.userService.getUser(userName).subscribe(userInformation => {
         this.userInfoArray.push(userInformation);
       }, 
       error => {
         console.log(error);
       }); });
-    });
-  }
-
-  openProfile(username: string) {
-    this.router.navigate(['/profile-info/', username]);
   }
 
 }

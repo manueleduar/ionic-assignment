@@ -21,10 +21,6 @@ export class UsersService {
         getUser(username: string): Observable<UserProfile> {
             return this.http.get<UserProfile>(`${this.users_url}/${username}`);
         }
-    
-        getRepos(username: string): Observable<any> {
-            return this.http.get(`${this.users_url}/${username}/repos`);
-        }
 
         getUsers(): Observable<Users[]> {
             return this.http.get<Users[]>(`${this.users_url}`);

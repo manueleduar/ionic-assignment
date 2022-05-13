@@ -68,5 +68,5 @@ export const MockListProfileUsers: UserProfile[]  = [
     following: 0,
     created_at: 'created_at2',
     updated_at: 'updated_at2',
-  },
+  }
 ]

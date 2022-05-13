@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
-import { SearchFilterPipe } from '../../pipes/search-filter.pipe';
 
 @Component({
   selector: 'app-search-component',
@@ -16,9 +15,7 @@ export class SearchComponentComponent implements OnInit {
   constructor(private usersService: UsersService, private router: Router) { }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(data => {
-      this.listUsers = data;
-    });
+    this.getUsers();
   }
 
   openProfile(loginName: string) {
@@ -27,6 +24,12 @@ export class SearchComponentComponent implements OnInit {
 
   onSearchChange(event: CustomEvent) {
     console.log(event.detail.value);
+  }
+
+  getUsers() {
+    this.usersService.getUsers().subscribe(data => {
+      this.listUsers = data;
+    });
   }
 
 }

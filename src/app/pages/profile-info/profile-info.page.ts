@@ -20,7 +20,12 @@ export class ProfileInfoPage implements OnInit {
     console.log('init profile info');
 
     // use the function getUser to get the user info
-    this.userService.getUser(this.key).subscribe(data => {
+    this.getProfileUser(this.key);
+  }
+
+  // get the user info
+  getProfileUser(key: string) {
+    this.userService.getUser(key).subscribe(data => {
       this.profile_user = data;
     });
   }

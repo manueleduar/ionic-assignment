@@ -3,8 +3,11 @@ import { IonicModule } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersService } from 'src/app/services/users.service';
-
+import { MockListProfileUsers } from 'src/app/mocks/list-of-profileUsers.mock';
+import { mockUsersArray } from 'src/app/mocks/users_array.mock';
 import { ListOfUsersComponent } from './list-of-users.component';
+import { of } from 'rxjs';
+import { UserProfile } from 'src/app/models/Profile.model';
 
 describe('ListOfUsersComponent', () => {
   // test Service and test create component
@@ -37,29 +40,42 @@ describe('ListOfUsersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // test getUsers service
+  // test openProfile() with username mojombo
+  it('should open profile with username mojombo', () => {
+    component.openProfile('mojombo');
+    expect(component.openProfile).toBeTruthy();
+  });
+
+  // test userService.getUsers()
   it('should get users from service', () => {
-    const service = TestBed.inject(UsersService);
-    expect(service.getUsers()).toBeTruthy();
-  });
-
-  // getUser should return object from service
-  it('should get one user', () => {
-    const user = 'userRandom';
-    expect(userService.getUser(user)).toBeTruthy();
-  });
-
-  // GetUser service test case get some user
-  it('should get some user', () => {
-    const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    expect(userService.getUser(randomString)).toBeTruthy();
-    console.log('randome user for test: ' + randomString);
-  });
-
-  // test ngOnInit() 
-  it('should open ngOnInit list-of-users component', () => {
+    const spy = spyOn(userService, 'getUsers').and.returnValue(of(mockUsersArray));
     component.ngOnInit();
-    expect(component.ngOnInit).toBeTruthy();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  // test this.UserService.getUser() function
+  it('should get user from service', () => {
+    const response: UserProfile = MockListProfileUsers[0];
+    const spy = spyOn(userService, 'getUser').and.returnValue(of(response));
+    userService.getUser('mojombo');
+    expect(spy).toHaveBeenCalled();
+  });
+
+  // test replaceSpaces function test if it replaces the spaces
+  it('should replace spaces', () => {
+    const response: string = 'mojombo%20bye-bye';
+    expect(component.replaceSpaces('mojombo bye-bye')).toBe(response);
+  });
+
+  // test getUser function
+  it('should get user when calls function', () => {
+    const response: UserProfile = MockListProfileUsers[0];
+    const spy = spyOn(userService, 'getUser').and.returnValue(of(response));
+    component.getUser(mockUsersArray);
+    expect(spy).toHaveBeenCalled();
   });
 
 });
+
+
+
