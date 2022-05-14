@@ -19,4 +19,8 @@ describe('Tab3Page', () => {
     fixture.detectChanges();
   }));
 
+  it('should create component', () => {
+    expect(component).toBeTruthy();
+  });
+
 });
