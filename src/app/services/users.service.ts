@@ -23,8 +23,7 @@ export class UsersService {
     users_url = `${this.env.api}users`;
     LoadedUsers$ : Observable<LoadingState>;
     
-    constructor(private http: HttpClient, private store: Store<AppState>) {
-        this.LoadedUsers$ = this.store.select('loader')
+    constructor(private http: HttpClient) {
     }
     
         getUser(username: string): Observable<UserProfile> {
@@ -32,20 +31,7 @@ export class UsersService {
         }
 
         getUsers(): Observable<Users[]> {
-            let users_list: Observable<Users[]> = this.http.get<Users[]>(this.users_url);
-            this.storeUsers(users_list);
-            return users_list;
-            }
-    
-        storeUsers(users_list: Observable<Users[]>): void {
-            users_list.subscribe(
-                (users: Users[]) => {
-                    this.store.dispatch(LOAD_USERS_SUCCESS({users: users}))
-                },
-                (error: any) => {
-                    this.store.dispatch(LOAD_USERS_FAIL({error: error}))
-                }
-            )
+            return this.http.get<Users[]>(this.users_url);
         }
 }
 

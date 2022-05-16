@@ -8,6 +8,7 @@ import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { mockUsersArray } from 'src/app/mocks/users_array.mock';
 import { MockListProfileUsers } from 'src/app/mocks/list-of-profileUsers.mock';
+import { Store } from '@ngrx/store';
 
 
 describe('UsersService', () => {
