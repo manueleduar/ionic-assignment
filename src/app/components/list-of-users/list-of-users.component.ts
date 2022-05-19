@@ -21,6 +21,7 @@ export class ListOfUsersComponent implements OnInit {
 
     this.userService.getUsers().subscribe(data => {
       this.users = data;
+      // console.table(this.users);
 
     // get user of each user array
     this.getUser(this.users);
