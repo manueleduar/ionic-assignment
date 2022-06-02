@@ -82,4 +82,17 @@ describe('UsersService', () => {
         )
     });
 
+    // test getUsersWithPagination
+    it('should return array of users using GetUsersWithPagination() function of service', (done: DoneFn) => {
+        const users = mockUsersArray;
+        httpClientSpy.get.and.returnValue(of(users));
+
+        service.getUsersWithPagination(1).subscribe(
+            (data: Users[]) => {
+                expect(data).toEqual(users);
+                done();
+            }
+        );
+    });
+
 });

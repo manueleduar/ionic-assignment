@@ -33,5 +33,9 @@ export class UsersService {
         getUsers(): Observable<Users[]> {
             return this.http.get<Users[]>(this.users_url);
         }
+
+        getUsersWithPagination(per_page: number): Observable<Users[]> {
+            return this.http.get<Users[]>(`${this.users_url}?per_page=${per_page}`);
+        }
 }
 

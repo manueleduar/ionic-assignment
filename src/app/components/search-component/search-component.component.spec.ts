@@ -50,25 +50,11 @@ describe('SearchComponentComponent', () => {
     expect(component.searchText).toBe('userRandom');
   });
 
-  // test search when is list es empty
-  it('should search when is list empty', () => {
-    component.searchText = 'userRandom';
-    component.listUsers = [];
-    component.ngOnInit();
-    expect(component.listUsers).toEqual([]);
-  });
 
-  // test service to get users list
-  it('should get users list from service', () => {
-    const service = TestBed.inject(UsersService);
-    expect(service).toBeTruthy();
-
-    service.getUsers().subscribe(data => {
-      expect(data).toBeTruthy();
-    }
-      , error => {
-        expect(error).toBeTruthy();
-      });
+  // test function getUsers from localStorage.getItem('users')
+  it('should get users from localStorage', () => {
+    component.getUsers();
+    expect(component.listUsers).toEqual(mockUsersArray);
   });
 
   // open profile test case
@@ -124,15 +110,6 @@ describe('SearchComponentComponent', () => {
   it('should open ngOnInit search-component', () => {
     component.ngOnInit();
     expect(component.ngOnInit).toBeTruthy();
-  });
-
-  // test getUsers() function component and service
-  it('should getUsers function component', () => {
-    const response = mockUsersArray;
-    const spy = spyOn(userService, 'getUsers').and.returnValue(of(response));
-    component.getUsers();
-    expect(component.getUsers).toBeTruthy();
-    expect(spy).toHaveBeenCalled();
   });
 
 });

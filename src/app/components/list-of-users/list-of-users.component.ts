@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { Users } from 'src/app/models/users.model';
+import { Users } from 'src/app/models/users.model';4
+import { UserProfile } from 'src/app/models/profile.model';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-list-of-users',
@@ -13,14 +15,16 @@ export class ListOfUsersComponent implements OnInit {
   constructor(private userService: UsersService, private router: Router) { }
 
   users : Users[] = [];
-  userInfoArray = [];
+  userInfoArray: UserProfile[] = [];
+  per_page: number = 20;
 
   // init app
   ngOnInit() {
     console.log('init app');
 
-    this.userService.getUsers().subscribe(data => {
+    this.userService.getUsersWithPagination(this.per_page).subscribe(data => {
       this.users = data;
+      localStorage.setItem('users', JSON.stringify(this.users));
       // console.table(this.users);
 
     // get user of each user array
@@ -46,6 +50,42 @@ export class ListOfUsersComponent implements OnInit {
       error => {
         console.log(error);
       }); });
+  }
+
+  // get each user with pagination and update users array accordingly
+  getUserWithPagination(per_page: number) {
+    this.userService.getUsersWithPagination(per_page).subscribe(data => {
+      this.users = data;
+      localStorage.setItem('users', JSON.stringify(this.users));
+      this.getUser(this.users);
+    });
+  }
+  
+  // update per_page + 10 and load more users
+  loadData(event: InfiniteScrollCustomEvent ) {
+    setTimeout(() => {
+      event.target.complete();
+
+      this.updatePerPageValue();
+
+      // App logic to determine if all data is loaded
+      this.getUserWithPagination(this.per_page);
+
+      // and disable the infinite scroll
+      if (this.checkIfDisableInfiniteScroll(this.users.length)) {
+        event.target.disabled = true;
+      }
+    }, 500);
+
+    console.log('load more users: ' + this.per_page);
+  }
+
+  checkIfDisableInfiniteScroll(length: number) {
+    return length >= 500 ? true : false;
+  }
+
+  updatePerPageValue() {
+    this.per_page += 10;
   }
 
 }

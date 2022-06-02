@@ -12,7 +12,7 @@ export class SearchComponentComponent implements OnInit {
   listUsers = [];
   searchText: string;
 
-  constructor(private usersService: UsersService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.getUsers();
@@ -27,9 +27,8 @@ export class SearchComponentComponent implements OnInit {
   }
 
   getUsers() {
-    this.usersService.getUsers().subscribe(data => {
-      this.listUsers = data;
-    });
+    this.listUsers = JSON.parse(localStorage.getItem('users'));
+    console.log(this.listUsers);
   }
 
 }
