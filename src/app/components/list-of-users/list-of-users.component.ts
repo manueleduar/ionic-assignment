@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { Users } from 'src/app/models/users.model';4
+import { Users } from 'src/app/models/users.model';
 import { UserProfile } from 'src/app/models/profile.model';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
