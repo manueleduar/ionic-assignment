@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import {InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
+import {InfiniteScrollCustomEvent, IonicModule, IonInfiniteScroll } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersService } from 'src/app/services/users.service';
@@ -9,7 +9,7 @@ import { ListOfUsersComponent } from './list-of-users.component';
 import { of } from 'rxjs';
 import { UserProfile } from 'src/app/models/Profile.model';
 import { Users } from 'src/app/models/Users.model';
-import { promise } from 'protractor';
+import { element, promise } from 'protractor';
 
 describe('ListOfUsersComponent', () => {
   // test Service and test create component
@@ -17,6 +17,11 @@ describe('ListOfUsersComponent', () => {
   let fixture: ComponentFixture<ListOfUsersComponent>;
   let userService: UsersService;
   let infiniteScroll: InfiniteScrollCustomEvent;
+
+  // interface of infinite scroll
+  interface InfiniteScrollCustomEvent extends CustomEvent {
+    target: HTMLIonInfiniteScrollElement;
+  }
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -88,10 +93,28 @@ describe('ListOfUsersComponent', () => {
   });
 
   // test loadData function
-  it('should call loadData function', fakeAsync(() => {
-    fixture.detectChanges();
-    fixture.componentInstance.loadData(infiniteScroll);
+  it('should call loadData function and load infiniteScroll', fakeAsync(() => {
+    // init infiniteScrollCustomEvent object
+    infiniteScroll = {
+      target: {
+        complete: () => { }
+      }
+    } as InfiniteScrollCustomEvent;
+
+    // test if (this.checkIfDisableInfiniteScroll(this.users.length)) {event.target.disabled = true;} else {event.target.disabled = false;}
+    spyOn(component, 'checkIfDisableInfiniteScroll').and.returnValue(true);
+    spyOn(infiniteScroll.target, 'complete');
+    component.loadData(infiniteScroll);
     tick(500);
+    expect(infiniteScroll.target.complete).toHaveBeenCalled();
+
+    expect(component.checkIfDisableInfiniteScroll(500)).toBeTruthy();
+
+    let response: Users[] = mockUsersArray;
+    let spy = spyOn(userService, 'getUsersWithPagination').and.returnValue(of(response));
+    component.loadData(infiniteScroll);
+    tick(500);
+    expect(spy).toHaveBeenCalled();
   }));
 
 

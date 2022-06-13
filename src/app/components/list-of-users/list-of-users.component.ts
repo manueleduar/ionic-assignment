@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { Users } from 'src/app/models/users.model';
 import { UserProfile } from 'src/app/models/profile.model';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-list-of-users',
@@ -11,6 +11,7 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   styleUrls: ['./list-of-users.component.scss'],
 })
 export class ListOfUsersComponent implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   constructor(private userService: UsersService, private router: Router) { }
 
