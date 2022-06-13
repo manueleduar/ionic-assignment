@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import {InfiniteScrollCustomEvent, IonicModule, IonInfiniteScroll } from '@ionic/angular';
+import {IonicModule } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersService } from 'src/app/services/users.service';
@@ -9,7 +9,6 @@ import { ListOfUsersComponent } from './list-of-users.component';
 import { of } from 'rxjs';
 import { UserProfile } from 'src/app/models/Profile.model';
 import { Users } from 'src/app/models/Users.model';
-import { element, promise } from 'protractor';
 
 describe('ListOfUsersComponent', () => {
   // test Service and test create component
