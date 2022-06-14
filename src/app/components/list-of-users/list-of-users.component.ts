@@ -17,7 +17,7 @@ export class ListOfUsersComponent implements OnInit {
 
   users : Users[] = [];
   userInfoArray: UserProfile[] = [];
-  per_page: number = 20;
+  per_page: number = 30;
 
   // init app
   ngOnInit() {
