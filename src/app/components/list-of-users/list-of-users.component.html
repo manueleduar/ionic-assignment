@@ -14,9 +14,7 @@
     <ion-label *ngIf="user.public_repos <= 2">
       <h2>{{ user.login || 'no name' }}</h2>
       <h5>{{ user.company || 'no company' }}</h5>
-      <p>
-        {{ user.location || 'no location' }}
-      </p>
+      <p> {{ user.location || 'no location' }} </p>
     </ion-label>
   </ion-item>
 
