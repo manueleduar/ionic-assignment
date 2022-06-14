@@ -50,7 +50,8 @@ export class ListOfUsersComponent implements OnInit {
       }, 
       error => {
         console.log(error);
-      }); });
+        });
+    });
   }
 
   // get each user with pagination and update users array accordingly
