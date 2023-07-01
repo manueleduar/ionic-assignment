@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { Users } from 'src/app/models/users.model';
-import { UserProfile } from 'src/app/models/profile.model';
+import { Users } from 'src/app/models/Users.model';
+import { UserProfile } from 'src/app/models/Profile.model';
 import { InfiniteScrollCustomEvent, IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
